@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8" />
+    <title>Scuba Diving</title>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physi cs-system.min.js"></script>
+    <script src="./components/diver.js"></script>
+    <script src="./components/coins.js"></script>
+    <script src="./components/fish.js"></script>
+    <script src="./components/Game.js"></script>
+    
+  </head>
+  <body>
+    <a-scene physics="debug:true">
+
+      <!--- Preload -->
+      <a-assets timeout="9000">
+        <a-asset-item id="island" src="assets/island/scene.gltf"></a-asset-item>
+        <a-asset-item id="chest 1" src="assets/chest_1/scene.gltf"></a-asset-item>
+        <a-asset-item id="fish" src="assets/fish/scene.gltf"></a-asset-item>
+        <a-asset-item id="turtle" src="assets/turtle/scene.gltf"></a-asset-item>
+        <a-asset-item id="scuba_diver" src="assets/scuba_diver/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <!-- Camera -->
+      <a-camera look-controls position="0 10 30"></a-camera>
+
+      <!-- Sky -->
+      <a-sky color="#8aecff" opacity="0.9"></a-sky>
+
+        <!-- Scuba Driver -->
+        <a-entity 
+          gltf-model="#scuba_diver"
+          scale="0.35 0.35 0.35"
+          position="15 -36.5 32"
+          rotation="0 90 -20"
+          dynamic-body="mass:0"
+          diver-rotation>
+
+          <a-sphere 
+            id="bubble1"
+            position="50 100 -39.38"
+            radius="1"
+            color="#b2ebf2"
+            animation="property: position; to: 52.9829 261 -49.38121; easing:linear; loop: true; dur: 3000">
+          </a-sphere>
+
+        </a-entity>
+
+        <!--Island-->
+        <a-entity
+          gltf-model="#island"
+          scale="1 1 1"
+          position="0 -15 -40"
+        ></a-entity>
+
+        <!-- Ring around the Island -->
+        <a-cylinder color="#539EB7" radius="90" opacity="0.3"></a-cylinder>
+
+        <!--Treasure-->
+          <a-entity
+            gltf-model="#chest 1"
+            scale="0.031 0.031 0.031"
+            position="-15 -6.1 -39"
+            rotation="0 5 0"
+          ></a-entity>
+
+          <a-entity
+            gltf-model="#chest 1"
+            scale="0.031 0.031 0.031"
+            position="11.5 -6.1 -39"
+            rotation="0 -5 0"
+          ></a-entity>
+        
+        <!-- Coins -->
+          <a-entity 
+            id="coins" 
+            position="0 0 0" 
+            coin_comp 
+            static-body
+          ></a-entity>
+
+        <!-- Turtle -->
+        <a-entity
+          gltf-model="#turtle"
+          scale="7 7 7"
+          position="39 -11.5 -20"
+          rotation="0 0 0"
+          static-body
+        ></a-entity>
+
+        <!-- Fish -->
+        <a-entity
+          id="fish"
+          scale="0.6 0.6 0.6"
+          position="-31 -14.5 -11"
+          rotation="0 0 0"
+          fish
+          static-body
+        ></a-entity>
+
+    </a-scene>
+  </body>
+</html>
